@@ -4,7 +4,7 @@
  * @Author: zhang zi fang
  * @Date: 2021-01-07 11:01:14
  * @LastEditors: zhang zi fang
- * @LastEditTime: 2021-01-08 14:10:31
+ * @LastEditTime: 2021-01-11 11:53:09
  */
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -37,6 +37,10 @@ export default {
         src: "https://www.17sucai.com/preview/38733/2013-10-10/3d-image-transitions/js/flux.js"
       }
     ]
+  },
+  router:{
+    // base:"./",
+    // mode:"hash"
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

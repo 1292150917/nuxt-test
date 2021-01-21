@@ -4,7 +4,7 @@
  * @Author: zhang zi fang
  * @Date: 2021-01-07 11:01:14
  * @LastEditors: zhang zi fang
- * @LastEditTime: 2021-01-08 14:59:57
+ * @LastEditTime: 2021-01-20 11:51:13
 -->
 
 <style lang="scss">
@@ -12,7 +12,7 @@
   color: #fff;
   background: red;
 }
-.fluxslider{
+.fluxslider {
   display: block;
   margin: 0 auto;
 }
@@ -27,7 +27,7 @@
       <h1 class="title wow animate__bounce">webfewfwe</h1>
       <span @click="spanClick" class="className">我是自定义class</span>
       <div class="wow title animate__bounce backOutLeft">
-        <el-button type="primary" class="">主要按钮</el-button>
+        <el-button type="primary">主要按钮</el-button>
         <el-button type="success">成功按钮</el-button>
         <el-button type="info">信息按钮</el-button>
         <el-button type="warning">警告按钮</el-button>
@@ -87,33 +87,33 @@ export default {
     };
   },
   async mounted() {
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 500);
-    // });
-    // var list = [];
-    window.f = new flux.slider("#slider", {
-      pagination: true,
-      controls: false,
-      transitions: ["explode", "tiles3d", "bars3d", "cube", "turn"],
-      autoplay: false,
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 500);
     });
-
-    $(".transitions").click(function (event) {
-      event.preventDefault();
-      window.f.next(
-        $(event.target).data("transition")
-      );
-    });
-    this.$nextTick((s) => {
-      var wow = new WOW({
-        boxClass: "wow",
-        animateClass: "animate__animated",
-        offset: 0,
-        mobile: true,
-        live: true,
+    var list = [];
+    this.$nextTick((v) => {
+      window.f = new flux.slider("#slider", {
+        pagination: true,
+        controls: false,
+        transitions: ["explode", "tiles3d", "bars3d", "cube", "turn"],
+        autoplay: false,
       });
-      wow.init();
+
+      $(".transitions").click(function (event) {
+        event.preventDefault();
+        window.f.next($(event.target).data("transition"));
+      });
+      this.$nextTick((s) => {
+        var wow = new WOW({
+          boxClass: "wow",
+          animateClass: "animate__animated",
+          offset: 0,
+          mobile: true,
+          live: true,
+        });
+        wow.init();
+      });
     });
     // var { status, data } = await axios.get(
     //   "http://127.0.0.1:8031/hosnode/mall_goods_info/queryList"
@@ -124,14 +124,14 @@ export default {
     try {
       if (process.server) {
         var list = [];
-        // await axios
-        //   .get("http://127.0.0.1:8031/hosnode/mall_goods_info/queryList")
-        //   .then((s) => {
-        //     list = s.data.data.data;
-        //   })
-        //   .then((v) => {
-        //     console.log(v);
-        //   });
+        await axios
+          .get("http://127.0.0.1:8031/hosnode/mall_goods_info/queryList")
+          .then((s) => {
+            list = s.data.data.data;
+          })
+          .then((v) => {
+            console.log(v);
+          });
         return {
           project: "nuxt",
           list,
@@ -139,12 +139,12 @@ export default {
       }
     } catch (error) {
       console.log(error);
-      context.error({ statusCode: 404, message: "页面未找到或无数据" }); //修改成这样就可以跳到错误提示页面
+      // context.error({ statusCode: 404, message: "页面未找到或无数据" }); //修改成这样就可以跳到错误提示页面
     }
   },
   methods: {
     spanClick() {
-      this.$router.push({ path: "/home/pt" });
+      this.$router.push({ path: "home/pt/" });
     },
   },
 };
